@@ -1,0 +1,24 @@
+div#model_properties {
+    float: left;
+    margin-left: 5%;
+    display: inline-block;
+    padding: 10px;
+    width: 40%;
+}
+
+div#generated_code {
+    float: right;
+    margin-right: 5%;
+    display: inline-block;
+    padding: 10px;
+    width: 40%;
+}
+
+table.model_variables {
+    border: 1px solid black;
+}
+thead.model_variables {
+    background-color: bisque;
+
+}
+

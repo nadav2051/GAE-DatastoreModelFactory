@@ -1,0 +1,32 @@
+    <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+       "http://www.w3.org/TR/html4/strict.dtd">
+    <HTML>
+       <HEAD>
+          <link rel="stylesheet" type="text/css" href="Datastore.css">
+          <script src="Datastore.js"></script>
+          <TITLE>Datastore Python Model Generator</TITLE>
+       </HEAD>
+       <BODY>
+        <div id="model_properties">
+            <span id="model_name">Model Class Name: <input type="text" id="model_name_input" placeholder="ClassName"/></span>
+            <br/><br/><br/>
+             <table class="model_variables" id="model_variable_table">
+                 <thead class="model_variables">
+                 <th width="150px">Property Name</th>
+                 <th width="150px">Property Type</th>
+                 <th width="150px">Repeated</th>
+                 <th width="150px">Getters</th>
+                 </thead>
+                 <tbody>
+                 </tbody>
+            </table>
+            <br/>
+            <button  onclick='insertVariableTableRow();'>Add New Property</button>
+            <br/><br/>
+            <button onclick="generateCode()">Generate Code</button>
+       </div>
+       <div id="generated_code">
+
+       </div>
+       </BODY>
+    </HTML>
