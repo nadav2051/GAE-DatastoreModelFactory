@@ -121,12 +121,12 @@
         // Generate key getter.
         if (getter_type.localeCompare("key") == 0)
         {
-            canvas.innerHTML += tab_space + tab_space + "return key.get()<br/>";
+            canvas.innerHTML += tab_space + tab_space + "return key.get()."+variable_name+"<br/>";
         }
         // Generate ID getter.
         else if(getter_type.localeCompare("id") == 0)
         {
-            canvas.innerHTML += tab_space + tab_space + "return " + class_name + ".get_by_id(id)<br/>";
+            canvas.innerHTML += tab_space + tab_space + "return " + class_name + ".get_by_id(id)." +variable_name+"<br/>";
         }
         // Shouldn't arrive here.
         else
