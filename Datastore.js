@@ -33,11 +33,9 @@
         "EmailProperty", "UserProperty", "IMProperty", "LinkProperty", "CategoryProperty",
         "RatingProperty", "ReferenceProperty", "SelfReferenceProperty", "ListProperty",
         "StringListProperty"];
-
         //Create and append select list
         var selectList = document.createElement("select");
         selectList.id = "variable_type_" + index;
-
         //Create and append the options
         for (var i = 0; i < array.length; i++) {
             var option = document.createElement("option");
@@ -45,7 +43,6 @@
             option.text = array[i];
             selectList.appendChild(option);
         }
-
         // Return Select object to be appended to a DOM node.
         return selectList;
     }
@@ -104,8 +101,11 @@
             {
                 continue;
             }
+            // Generic getters for all property types.
             generateGetter(canvas, variable_name, "key", class_name);
             generateGetter(canvas, variable_name, "id", class_name);
+
+            // Specific getters for property types.
         }
     }
 
@@ -115,20 +115,20 @@
         var canvas = canvas;
         // @staticmethod
         canvas.innerHTML += tab_space + "@staticmethod<br\>";
-        // function definition
+        // function definition.
         canvas.innerHTML += tab_space + "get_" + variable_name + "_by_" + getter_type + "("+ getter_type +"):<br/>";
-        // function body
-        // Generate Key Getter
+        // function body.
+        // Generate key getter.
         if (getter_type.localeCompare("key") == 0)
         {
             canvas.innerHTML += tab_space + tab_space + "return key.get()<br/>";
         }
-        // Generate ID Getter
+        // Generate ID getter.
         else if(getter_type.localeCompare("id") == 0)
         {
             canvas.innerHTML += tab_space + tab_space + "return " + class_name + ".get_by_id(id)<br/>";
         }
-        // Shouldn't arrive here
+        // Shouldn't arrive here.
         else
         {
             alert("Something went wrong...");
