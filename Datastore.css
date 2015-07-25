@@ -3,12 +3,12 @@ div#main_container{
 }
 div#model_properties {
     padding: 10px;
-    width: 40%;
+    width: 50%;
 }
 
 div#generated_code {
     padding: 10px;
-    width: 40%;
+    width: 50%;
 }
 
 table.model_variables {

@@ -104,11 +104,21 @@
             {
                 continue;
             }
-
-
-            // Specific getters for property types.
+            generatePropertyGetter(canvas, variable_type, variable_name, class_name);
         }
     }
+
+
+    function generatePropertyGetter(canvas, property_type, property_name, class_name)
+    {
+        switch (property_type)
+        {
+            case "IntegerProperty":
+                generateIntegerPropertyGetters(canvas, property_name, class_name);
+                break;
+        }
+    }
+
 
     // Getter types: 0 = Key, 1 = ID.
     function generateGetter(canvas, getter_type, class_name)
@@ -135,4 +145,70 @@
             alert("Something went wrong...");
         }
         canvas.innerHTML += "<br\>"
+    }
+
+    // Property specific getters
+    // Integer Property
+    function generateIntegerPropertyGetters(canvas, property_name, class_name)
+    {
+        // Function declaration and documentation
+        generateFunctionName(canvas, "get_" + class_name + "_by_" + property_name, "number, relation");
+        generateFunctionDocumentation(canvas, tab_space + tab_space,
+                                                "Returns all class entities conforming to the condition supplied.\n" +
+                                                ":param number: the number to compare against.\n" +
+                                                ":param relation: the relation to use (>,<,=,<=,>=).\n" +
+                                                ":return: Query object containing the results.\n" +
+                                                "ex: calling the function with 5 and < will return all objects that" +
+                                                "has the specific property less than 5.");
+        // Function body starts here
+        generateIfElseFlow(canvas ,tab_space + tab_space,
+            [
+            ['relation == "<"', "return " + class_name + ".query(" + class_name + "." + property_name + "<" + " number)"],
+            ['relation == ">"', "return " + class_name + ".query(" + class_name + "." + property_name + ">" + " number)"],
+            ['relation == "="', "return " + class_name + ".query(" + class_name + "." + property_name + "=" + " number)"],
+            ['relation == "<="', "return " + class_name + ".query(" + class_name + "." + property_name + "<=" + " number)"],
+            ['relation == ">="', "return " + class_name + ".query(" + class_name + "." + property_name + ">=" + " number)"],
+            ] )
+
+
+    }
+
+
+    // Private functions
+    function generateFunctionName(canvas, function_name, arguments)
+    {
+        canvas.innerHTML += tab_space + "@staticmethod<br\>";
+        canvas.innerHTML += tab_space + function_name + "(" + arguments + "):<br\>";
+    }
+
+    function generateFunctionDocumentation(canvas, tab_spacing, documentation_string)
+    {
+        canvas.innerHTML += tab_spacing + "'''<br\>";
+        var documentation_string_lines;
+        console.log(documentation_string);
+        documentation_string_lines = documentation_string.split("\n");
+        console.log(documentation_string_lines);
+        for (var i = 0; i < documentation_string_lines.length ; i++ )
+        {
+
+            canvas.innerHTML += tab_spacing + documentation_string_lines[i] + "<br\>";
+        }
+        canvas.innerHTML += tab_spacing + "'''<br\>";
+    }
+
+    function generateIfElseFlow(canvas, tab_spacing, condition_actions_array)
+    {
+        for (var i = 0 ; i < condition_actions_array.length ; i++)
+        {
+            if (i == 0)
+            {
+                canvas.innerHTML += tab_spacing + "if " + condition_actions_array[i][0] + ":<br\>";
+                canvas.innerHTML += tab_spacing + tab_space + condition_actions_array[i][1] + "<br\>"
+            }
+            else
+            {
+                canvas.innerHTML += tab_spacing + "elif " + condition_actions_array[i][0] + ":<br\>";
+                canvas.innerHTML += tab_spacing + tab_space + condition_actions_array[i][1] + "<br\>";
+            }
+        }
     }
