@@ -114,7 +114,11 @@
         switch (property_type)
         {
             case "IntegerProperty":
+                canvas.innerHTML +=  "<br\>" + tab_space + "# " + property_type + " Getter<br\>"
                 generateIntegerPropertyGetters(canvas, property_name, class_name);
+                break;
+            default:
+                canvas.innerHTML += "<br\>" + tab_space +  "# Getter for " + property_type + " is not currently supported.<br\>";
                 break;
         }
     }
