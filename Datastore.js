@@ -114,7 +114,6 @@
         switch (property_type)
         {
             case "IntegerProperty":
-                canvas.innerHTML +=  "<br\>" + tab_space + "# " + property_type + " Getter<br\>"
                 generateIntegerPropertyGetters(canvas, property_name, class_name);
                 break;
             default:
@@ -131,7 +130,7 @@
         // @staticmethod
         canvas.innerHTML += tab_space + "@staticmethod<br\>";
         // function definition.
-        canvas.innerHTML += tab_space + "get_" + class_name + "_by_" + getter_type + "("+ getter_type +"):<br/>";
+        canvas.innerHTML += tab_space + "def get_" + class_name + "_by_" + getter_type + "("+ getter_type +"):<br/>";
         // function body.
         // Generate key getter.
         if (getter_type.localeCompare("key") == 0)
@@ -182,7 +181,7 @@
     function generateFunctionName(canvas, function_name, arguments)
     {
         canvas.innerHTML += tab_space + "@staticmethod<br\>";
-        canvas.innerHTML += tab_space + function_name + "(" + arguments + "):<br\>";
+        canvas.innerHTML += tab_space + "def " + function_name + "(" + arguments + "):<br\>";
     }
 
     function generateFunctionDocumentation(canvas, tab_spacing, documentation_string)
